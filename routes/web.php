@@ -20,3 +20,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/penjalista', 'PagesController@penjalista');
 
+Route::resource('posts', 'PostController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
