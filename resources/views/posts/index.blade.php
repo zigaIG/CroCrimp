@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="/posts/{{$post->id}}" class="btn btn-primary btn-sm">Saznaj više</a>
+                        <a href="/posts/{{$post->id}}" class="btn btn-outline-info">Saznaj više</a>
                     </div>
                 </div>
             </div>

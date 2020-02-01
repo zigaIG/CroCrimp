@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class RouteImage extends Model
 {
-    //
-    protected $table = 'posts';
-    public $primryKey = 'id';
-    public $timestamps = true;
-
+    public function route(){
+        return $this->belongsTo('App\route');
+    }
     public function user(){
         return $this->belongsTo('App\User');
     }

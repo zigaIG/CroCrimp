@@ -21,6 +21,13 @@ Route::get('/about', 'PagesController@about');
 Route::get('/penjalista', 'PagesController@penjalista');
 
 Route::resource('posts', 'PostController');
+Route::resource('spots', 'SpotsController');
+Route::resource('sectors', 'SectorsController');
+Route::resource('routes', 'RoutesController');
+Route::resource('comments', 'CommentsController');
+Route::resource('routeimage', 'RouteImagesController');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

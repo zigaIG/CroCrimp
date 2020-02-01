@@ -20,7 +20,7 @@
             {!!Form::close()!!}
         @endif
     @endif
-    <hr>
+<br>
     <a href="/posts" class="btn btn-outline-secondary">Nazad</a>
 
 

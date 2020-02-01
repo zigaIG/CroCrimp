@@ -51,7 +51,7 @@
                     <a class="nav-link" href="/posts">Vijesti <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/penjalista">Penjališta <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/spots">Penjališta <span class="sr-only">(current)</span></a>
                 </li>
               {{--   <li class="nav-item">
                     <a class="nav-link" href="/about">O nama <span class="sr-only">(current)</span></a>
@@ -81,6 +81,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/home">Upravljačka ploča</a>
                             <a class="dropdown-item" href="/posts/create">Novi post</a>
+                            <a class="dropdown-item" href="/spots/create">Dodaj penjaliste</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
