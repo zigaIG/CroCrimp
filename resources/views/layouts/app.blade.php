@@ -16,6 +16,7 @@
         CKEDITOR.replace( 'article-ckeditor' );
     </script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -27,7 +28,7 @@
 <body>
     @mapscripts
      @include('inc.navbar')
-    <div id="app">
+    <div id="app" style="padding-bottom: 100px;">
         
 
         <main class="py-4">
@@ -41,5 +42,5 @@
     </div>
    
 </body>
-{{-- @include('inc.footer')  --}}
+@include('inc.footer') 
 </html>

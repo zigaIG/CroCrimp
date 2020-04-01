@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RouteImage;
 use App\Route;
+use App\User;
 
 class RouteImagesController extends Controller
 {
@@ -53,13 +54,14 @@ class RouteImagesController extends Controller
             //upolad
             $path = $request->file('route_image')->storeAs('public/route_images', $fileNameToStore);
         } else {
-            $fileNameToStore = 'bez_slike.jpg';
+            return back()->with('error', 'niste odabrali sliku');;
         }
 
 
         $route_image = new RouteImage;
         $route_image->route_image = $fileNameToStore;
         $route_image->route_id =  $request->input('route_id');
+        $route_image->user_id = auth()->user()->id;
         $route_image->save();
         return back()->with('success', 'slika je dodana');
     }
@@ -106,6 +108,14 @@ class RouteImagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+         //
+         $RouteImage = RouteImage::find($id);
+         if(auth()->user()->id !==$RouteImage->user_id){
+ 
+             return redirect('/spots')->with('error', 'Pristup nije dozvoljen');
+             }
+            $RouteImage->delete();
+         return back()->with('success', 'slika smjera je izbrisana');
+     }
     }
-}
+

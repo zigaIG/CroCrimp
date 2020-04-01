@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserIdToPosts extends Migration
+class UserIdToRouteimages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class UserIdToPosts extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function ($table) {
+        //
+        Schema::table('route_images' , function ($table) {
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            //
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');     
         });
     }
 
@@ -27,7 +27,8 @@ class UserIdToPosts extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function ($table) {
+        //
+        Schema::table('route_images', function ($table) {
             $table->dropColumn('user_id');
         });
     }

@@ -4,18 +4,24 @@
 <h1>{{$spot->ime}}</h1> 
 <hr>
 
-@map([
-    'lat' => 44.456178,
-    'lng' => 15.680024,
-    'zoom' => 6,
-    'markers' => [
-        [
-            'title' => '{{$spot->ime}}',
-            'lat' => '{{$spot->x}}',
-            'lng' => '{{$spot->y}}',
-        ],
-    ],
-])
+
+    @php
+    
+        $markers[] = [
+            'title' => $spot->ime,
+            'lat' => $spot->x,
+            'lng' => $spot->y,
+        ];
+    
+    @endphp
+    @map([
+        'lat' => '44.456178',
+        'lng' => '15.680024',
+        'zoom' => '6',
+        'markers' => $markers
+    ])
+ 
+
 
 <hr>
 <h3>{{$spot->ime}}</h3>

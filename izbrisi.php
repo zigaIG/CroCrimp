@@ -28,6 +28,8 @@
             </body>  
 </html>
 
+/* $table->foreign('apartment_id')->references('id')->on('apartments') ->onDelete('cascade') */
+
 
 
 Schema::create('penjalistes', function (Blueprint $table) {

@@ -6,46 +6,34 @@
 <h3>{{$route->ime}}</h3>
 {{-- slike --}}
 
-
-
-{{--  @foreach($route_images as $route_image)
-    @if($route->id == $route_image->route_id)
-        <div>
-            <img style="width:50%" src="/storage/route_images/{{$route_image->route_image}}">
-        </div>
-    @endif
-@endforeach --}}
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            @foreach( $route_images as $route_image )
-                <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-            @endforeach
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            @foreach( $route_images as $route_image )
-                <div class="item {{ $loop->first ? ' active' : '' }}" >
-                    <img src="/storage/route_images/{{$route_image->route_image}}" alt="nemogu ucitati">
+<div class="row">
+    @foreach($route_images as $route_image)
+        @if($route->id == $route_image->route_id)
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">   
+                    <a href="/storage/route_images/{{$route_image->route_image}}">
+                        <img style="width:100%" src="/storage/route_images/{{$route_image->route_image}}"> 
+                    </a>   
+                        @if(!Auth::guest())
+                             @if(Auth::user()->id == $route_image->user_id)
+                        <hr>
+                             {!!Form::open(['action' => ['RouteImagesController@destroy', $route_image->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+                                {{Form::hidden('_method', 'DELETE')}}
+                                {{Form::submit('Obriši sliku',['class'=> 'btn btn-outline-danger' ])}}
+                            {!!Form::close()!!}
+                             @endif
+                        @endif
+                                                                        
+                    </div>
                 </div>
-            @endforeach
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+            </div>
+         @endif
+    @endforeach
+</div>
 
 
-
+ 
 
 {{-- slike --}}
 <p>Ocjena: {{$route->ocjena}}</p>
@@ -57,6 +45,7 @@
 <br>
 <div class="container" style="background-color:gainsboro;">
 <br>
+@if(Auth::user())
 {!!Form::open(['action'=> 'RouteImagesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
       <div class="form-group">
         {!!Form::file('route_image')!!}
@@ -64,6 +53,7 @@
       {{Form::hidden('route_id', $route->id, ['class'=> 'form-control'])}}  
       {{Form::submit('Dodaj sliku smjera',['class'=> 'btn btn-outline-secondary' ])}}
 {!!Form::close()!!}
+@endif
 <br>
 </div>
 @if(!Auth::guest())
@@ -96,6 +86,7 @@
                 </div>                                        
                 </div>  
             </div>
+            <div style="padding-top: 20px">
             @if(!Auth::guest())
             @if(Auth::user()->id == $comment->user_id)                          
                 {!!Form::open(['action' => ['CommentsController@destroy', $comment->id], 'method' => 'POST', 'class' => 'float-right'])!!}
@@ -104,6 +95,7 @@
                 {!!Form::close()!!}
             @endif
             @endif
+            </div>
         </div>
     </div>
     <br>
@@ -127,7 +119,11 @@
     {!! Form::close() !!}
 <hr>
 @endif
-<a href="/sectors/{{$sector->id}}" class="btn btn-outline-secondary">Nazad</a> 
+{{-- <a href="/sectors/{{$sector->id}}" class="btn btn-outline-secondary">Nazad</a> --}} 
 
+
+  <script>
+        document.querySelector('.carousel-inner > div:first-child').classList.add('active');
+    </script>
 
 @endsection

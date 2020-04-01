@@ -22,7 +22,10 @@ class CreateRoutesTable extends Migration
             $table->mediumtext('opis');
             $table->string('postavio');
             $table->integer('user_id');
-            $table->integer('sector_id');
+/*             $table->integer('sector_id'); */
+/* $table->unsignedBigInteger('sector_id')->nullable();
+$table->foreign('sector_id')->references('id')->on('sectors')->onDelete('set null');
+ */
             $table->timestamps();
         });
     }

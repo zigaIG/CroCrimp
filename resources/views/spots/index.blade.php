@@ -2,21 +2,23 @@
 @section ('content')
     <h1>Penjališta</h1> 
     <hr>
+
+    @php
+    $markers = [];
+    foreach($spots as $spot) {
+        $markers[] = [
+            'title' => $spot->ime,
+            'lat' => $spot->x,
+            'lng' => $spot->y,
+            'url' => "spots/$spot->id"
+        ];
+    }
+    @endphp
     @map([
         'lat' => '44.456178',
         'lng' => '15.680024',
         'zoom' => '6',
-        'markers' => [[
-            'title' => 'Kalnik',
-            'lat' => '46.133096',
-            'lng' => '16.463705',
-            'url' => 'https://gonoware.com',
-]       /* kako staviti foreach u ovo da prikaže vise markera,[
-            'title' => 'Go NoWare',
-            'lat' => '46.533996',
-            'lng' => '16.463005',
-            'url' => 'https://gonoware.com',
-        ]    ovak se dodaju drugi markeri*/],
+        'markers' => $markers
     ])
  
     <hr>

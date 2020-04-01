@@ -125,6 +125,7 @@
                             <th>Novi smjer dodaje se u odabranom sektoru</th>    
                         </tr>
                         {{-- ovo ispod je za smjerove  --}}  
+                    </div>        
                 <div class="card-body">                     
                         @if(count($comments) > 0)
                             <table class="table table-striped">
